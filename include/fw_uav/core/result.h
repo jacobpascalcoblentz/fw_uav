@@ -165,7 +165,7 @@ public:
 
     // Map the value if ok, propagate error otherwise
     template<typename F>
-    auto map(F&& f) const -> Result<decltype(f(value_))> {
+    auto map(F&& f) const -> Result<decltype(f(std::declval<T>()))> {
         if (has_value_) {
             return f(value_);
         }
@@ -174,7 +174,7 @@ public:
 
     // Chain operations that return Result
     template<typename F>
-    auto and_then(F&& f) const -> decltype(f(value_)) {
+    auto and_then(F&& f) const -> decltype(f(std::declval<T>())) {
         if (has_value_) {
             return f(value_);
         }

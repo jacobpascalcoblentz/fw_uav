@@ -126,10 +126,10 @@ endif()
 if(FW_UAV_BUILD_SITL AND NOT FW_UAV_EMBEDDED)
     add_executable(sitl_main
         tests/simulation/sitl_main.cpp
-        tests/simulation/aircraft_model.cpp
-        tests/simulation/sensor_sim.cpp
+        # aircraft_model.cpp and sensor_sim.cpp are included directly in sitl_main.cpp
     )
 
+    target_include_directories(sitl_main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests/simulation)
     target_link_libraries(sitl_main PRIVATE fw_uav)
 endif()
 
