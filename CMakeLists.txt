@@ -47,10 +47,9 @@ add_library(fw_uav STATIC
     # Core
     src/control/pid.cpp
 
-    # Control (to be added)
-    # src/control/attitude_controller.cpp
-    # src/control/tecs.cpp
-    # src/control/l1_controller.cpp
+    # Control
+    src/control/attitude_controller.cpp
+    src/control/l1_controller.cpp
 
     # Estimation (to be added)
     # src/estimation/attitude_estimator.cpp
@@ -111,6 +110,9 @@ if(FW_UAV_BUILD_TESTS AND NOT FW_UAV_EMBEDDED)
         tests/unit/test_result.cpp
         tests/unit/test_pid.cpp
         tests/unit/test_units.cpp
+        tests/unit/test_attitude_controller.cpp
+        tests/unit/test_tecs.cpp
+        tests/unit/test_l1_controller.cpp
     )
 
     target_link_libraries(fw_uav_tests PRIVATE
@@ -126,10 +128,9 @@ endif()
 if(FW_UAV_BUILD_SITL AND NOT FW_UAV_EMBEDDED)
     add_executable(sitl_main
         tests/simulation/sitl_main.cpp
-        tests/simulation/aircraft_model.cpp
-        tests/simulation/sensor_sim.cpp
     )
 
+    target_include_directories(sitl_main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests/simulation)
     target_link_libraries(sitl_main PRIVATE fw_uav)
 endif()
 

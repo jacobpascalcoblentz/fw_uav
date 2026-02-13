@@ -446,7 +446,6 @@ inline float geo_bearing_rad(const GeoPosition& a, const GeoPosition& b) {
 
 // Convert geo position to NED relative to home
 inline NEDPosition geo_to_ned(const GeoPosition& pos, const GeoPosition& home) {
-    double lat_rad = pos.latitude_deg * DEG_TO_RAD;
     double home_lat_rad = home.latitude_deg * DEG_TO_RAD;
 
     double dlat = pos.latitude_deg - home.latitude_deg;
