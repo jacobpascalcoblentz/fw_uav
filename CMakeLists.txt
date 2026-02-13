@@ -51,24 +51,12 @@ add_library(fw_uav STATIC
     src/control/attitude_controller.cpp
     src/control/l1_controller.cpp
 
-    # Estimation (to be added)
-    # src/estimation/attitude_estimator.cpp
-    # src/estimation/position_estimator.cpp
+    # Estimation
+    src/estimation/attitude_estimator.cpp
+    src/estimation/position_estimator.cpp
 
-    # Navigation (to be added)
-    # src/navigation/navigator.cpp
-    # src/navigation/mission.cpp
-    # src/navigation/geofence.cpp
-
-    # Safety (to be added)
-    # src/safety/failsafe.cpp
-    # src/safety/envelope_protection.cpp
-
-    # Modes (to be added)
-    # src/modes/mode_manual.cpp
-    # src/modes/mode_stabilize.cpp
-    # src/modes/mode_fbw.cpp
-    # src/modes/mode_auto.cpp
+    # Modes
+    src/modes/flight_mode_manager.cpp
 )
 
 target_include_directories(fw_uav PUBLIC
@@ -113,6 +101,9 @@ if(FW_UAV_BUILD_TESTS AND NOT FW_UAV_EMBEDDED)
         tests/unit/test_attitude_controller.cpp
         tests/unit/test_tecs.cpp
         tests/unit/test_l1_controller.cpp
+        tests/unit/test_attitude_estimator.cpp
+        tests/unit/test_position_estimator.cpp
+        tests/unit/test_flight_modes.cpp
     )
 
     target_link_libraries(fw_uav_tests PRIVATE
