@@ -57,6 +57,10 @@ add_library(fw_uav STATIC
 
     # Modes
     src/modes/flight_mode_manager.cpp
+
+    # Safety
+    src/safety/failsafe.cpp
+    src/safety/envelope_protection.cpp
 )
 
 target_include_directories(fw_uav PUBLIC
@@ -104,6 +108,8 @@ if(FW_UAV_BUILD_TESTS AND NOT FW_UAV_EMBEDDED)
         tests/unit/test_attitude_estimator.cpp
         tests/unit/test_position_estimator.cpp
         tests/unit/test_flight_modes.cpp
+        tests/unit/test_failsafe.cpp
+        tests/unit/test_envelope_protection.cpp
     )
 
     target_link_libraries(fw_uav_tests PRIVATE
